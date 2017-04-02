@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+body{
+	background-image: url(../images/1945064927-1.jpg);
+	background-size: cover;
+}
+.music-box {
+            width: 500px;
+            margin: 100px auto;
+        }
+        nav {
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            background-color: #C687CD;
+            display: flex;
+            border-radius: 18px;
+        }
+        a {
+            display: block;
+            flex: 1;
+            color: #FFF;
+            text-decoration: none;
+        }
+        ul {
+            width: 500px;
+            margin: 0;
+            list-style: none;
+        }
+        ul li {
+            line-height: 1;
+            width: 495px;
+            padding: 5px 5px;
+            color: darkblue;
+        }
+        ul li:hover {
+            background-color: lightgoldenrodyellow;
+        }
+

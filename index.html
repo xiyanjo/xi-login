@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title> Join </title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src='lib/angular.min.js'></script>
+    <script src='lib/angular-route.js'></script>
+    <script>
+    	var app=angular.module("app",["ngRoute"]);
+    	// 配置路由
+        app.config(['$routeProvider',function ($routeProvider){
+            $routeProvider.when('/:id',{
+                controller:'listCon',
+                templateUrl:'music.html'
+            })
+        }])
+    	app.controller( 'musicCon',['$scope','$http',function($scope,$http){
+            // 向PHP请求文件
+            $http({
+                url:'nav.php',
+                method:'get'
+            }).success(function ( data ){
+                 console.log(data)
+                $scope.lists = data;
+            })
+
+    	} ] )
+        app.controller( 'listCon',['$scope','$routeParams','$http',function($scope,$routeParams,$http){
+
+            // 向PHP请求文件
+            $http({
+                url:'list.php',
+                method:'get',
+                params:{
+                    pid:$routeParams.id
+                }
+            }).success(function ( data ){
+                $scope.data = data;
+            })
+
+        } ] )
+    	
+    </script>
+</head>
+<body ng-app='app'>
+	<div class="music-box" ng-controller='musicCon'>
+        <nav >
+            <!--分类的id，分类的唯一标识-->
+            <a href='#/{{item.id}}' ng-repeat='item in lists' ng-cloak> {{item.categoryName}} </a>
+        </nav>
+        <!--用路由-->
+        <div ng-view></div>
+    </div>
+</body>
+</html>
